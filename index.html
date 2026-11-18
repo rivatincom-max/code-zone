@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#111318">
+<meta name="description" content="Интерактивный курс программирования с нуля: Python, JavaScript, HTML, CSS и создание приложений.">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Code From Zero">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<title>CODE: FROM ZERO — интерактивный курс</title>
+<style>
+:root{--bg:#0d0f14;--panel:#171a22;--panel2:#1e2330;--text:#f2f4f8;--muted:#a6adbb;--line:#2c3240;--accent:#ff9d42;--green:#65d69a;--blue:#78aaff;--code:#090b10}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.62 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{padding:34px 20px 28px;background:radial-gradient(ellipse at 85% 10%,#55351d 0,transparent 45%),linear-gradient(135deg,#171b25,#101218);border-bottom:1px solid var(--line)}
+.wrap{max-width:900px;margin:auto;padding:0 16px}.eyebrow{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+h1{font-size:clamp(32px,8vw,54px);line-height:1.03;margin:12px 0}h2{font-size:25px;line-height:1.2;margin:0 0 14px}h3{font-size:19px;margin:22px 0 8px}p{margin:9px 0 14px} .sub{color:var(--muted);max-width:650px}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.pill{border:1px solid #51402e;color:#ffd1a3;border-radius:99px;padding:5px 10px;font-size:12px}
+main{padding:22px 0 70px}.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;margin:14px 0}.intro{border-color:#67472b;background:linear-gradient(135deg,#211b17,#171a22)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{background:var(--panel2);padding:12px;border-radius:12px}.stat b{display:block;font-size:21px;color:var(--accent)}
+nav{display:flex;gap:8px;overflow:auto;padding:8px 0 14px;scrollbar-width:none}nav a{white-space:nowrap;text-decoration:none;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:99px;padding:8px 12px;font-size:13px}
+a{color:#ffc184}.progress{height:8px;background:#292e39;border-radius:20px;overflow:hidden;margin:10px 0}.bar{height:100%;width:0;background:var(--accent);transition:width .2s}
+.lesson{scroll-margin-top:14px}.lesson-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.tag{font-size:11px;color:var(--accent);font-weight:800;letter-spacing:.08em}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--code);border:1px solid #303747;border-radius:12px;padding:14px;color:#dce6ff;font:13px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-x:auto}
+code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:#ffd19c;background:#24202a;padding:2px 5px;border-radius:5px}
+.output{border-left:3px solid var(--green);padding:8px 12px;background:#14221d;border-radius:0 9px 9px 0;color:#c9f3dc;font-family:monospace}
+.tip{border-left:3px solid var(--blue);padding:8px 12px;background:#151f2d;border-radius:0 9px 9px 0;color:#d7e6ff}
+.task{background:#211d17;border:1px solid #59432d;border-radius:12px;padding:13px;margin-top:12px}
+button,.btn{border:0;border-radius:11px;background:var(--accent);color:#1c140c;font-weight:800;padding:11px 14px;font-size:14px;cursor:pointer}
+button.secondary{background:var(--panel2);border:1px solid var(--line);color:var(--text)}
+.lesson-check{display:flex;gap:9px;align-items:center;color:var(--muted);font-size:13px;margin-top:15px}
+input[type=checkbox]{width:19px;height:19px;accent-color:var(--accent)}
+details{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px;margin:9px 0}summary{font-weight:700;cursor:pointer}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.small{font-size:13px;color:var(--muted)}.quiz label{display:block;padding:8px;border:1px solid var(--line);border-radius:9px;margin:7px 0}.result{font-weight:700;margin-top:10px}
+footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:13px}
+@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}.card{padding:22px}pre{font-size:14px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="eyebrow">Интерактивная программа обучения</div>
+<h1>CODE:<br><span style="color:var(--accent)">FROM ZERO</span></h1>
+<p class="sub">Путь от полного нуля до собственных программ, интерфейсов и приложений для Windows и Android. Читай с телефона, выполняй задания и отмечай пройденные уроки.</p>
+<div class="pills"><span class="pill">45 уроков</span><span class="pill">5 модулей</span><span class="pill">Практика</span><span class="pill">Для новичка</span></div>
+</div></header>
+<main class="wrap">
+<section class="card intro">
+<h2>Как проходить курс</h2>
+<p>Не пытайся проглотить всё за один вечер. Проходи по 1–2 урока, набирай примеры руками и обязательно меняй их. Если просто читать код, мозг узнаёт его, но не учится создавать.</p>
+<div class="grid"><div class="stat"><b>1</b><span>Прочитай объяснение</span></div><div class="stat"><b>2</b><span>Разбери пример</span></div><div class="stat"><b>3</b><span>Выполни задание</span></div><div class="stat"><b>4</b><span>Отметь урок</span></div></div>
+<p><strong>Важно:</strong> этот HTML-файл является учебником, а не компилятором. Код Python и JavaScript нужно запускать в соответствующей среде. В конце есть инструкция, как начать на Windows.</p>
+<h3>Твой прогресс</h3><div class="progress"><div class="bar" id="progressBar"></div></div><p class="small" id="progressText">Выполнено 0 из 45 уроков</p>
+<button class="secondary" onclick="resetProgress()">Сбросить отметки</button>
+</section>
+<nav>
+<a href="#start">Старт</a><a href="#python">1 · Python</a><a href="#js">2 · JavaScript</a><a href="#web">3 · HTML/CSS</a><a href="#apps">4 · Приложения</a><a href="#pro">5 · Разработка</a><a href="#setup">Установка</a><a href="#glossary">Словарь</a>
+</nav>
+<section id="start" class="card">
+<h2>Перед началом: что такое код?</h2>
+<p>Программа — это набор точных инструкций для компьютера. Ты описываешь, что должно произойти, а компьютер выполняет инструкции.</p>
+<p>Например: «получи два числа, сложи их и покажи ответ». Программирование — это умение разбить большую задачу на маленькие понятные шаги.</p>
+<h3>Языки и технологии: кто за что отвечает</h3>
+<table><tr><th>Технология</th><th>Для чего нужна</th></tr>
+<tr><td>Python</td><td>Логика, автоматизация, скрипты, серверы, инструменты и приложения.</td></tr>
+<tr><td>JavaScript</td><td>Интерактивность сайтов, веб-приложения и логика интерфейсов.</td></tr>
+<tr><td>HTML</td><td>Структура страницы: заголовки, текст, кнопки, поля.</td></tr>
+<tr><td>CSS</td><td>Внешний вид: цвета, размеры, расположение и адаптация под телефон.</td></tr>
+<tr><td>Git</td><td>История изменений кода и возможность вернуться к рабочей версии.</td></tr>
+<tr><td>API</td><td>Способ, которым одна программа обращается к другой.</td></tr></table>
+<div class="tip">Не нужно учить все языки сразу. Начнём с Python, затем добавим JavaScript и веб-технологии. Для первой цели важнее понять основы, чем собрать коллекцию языков.</div>
+</section>
+
+<section id="python"><div class="card"><div class="tag">МОДУЛЬ 01 · УРОКИ 1–10</div><h2>Python: учимся мыслить как программист</h2><p>Python выбран первым, потому что его синтаксис относительно простой и на нём удобно объяснять базовые идеи.</p></div></section>
+<div id="lessons"></div>
+
+<section id="js" class="card"><div class="tag">МОДУЛЬ 02 · УРОКИ 11–20</div><h2>JavaScript: интерактивная логика</h2><p>JavaScript часто работает внутри браузера. С ним кнопки реагируют на нажатия, формы проверяют ввод, а интерфейсы обновляются без перезагрузки.</p></div>
+<div id="jslessons"></div>
+
+<section id="web" class="card"><div class="tag">МОДУЛЬ 03 · УРОКИ 21–28</div><h2>HTML и CSS: создаём интерфейс</h2><p>HTML задаёт содержимое, CSS отвечает за внешний вид. Вместе с JavaScript они позволяют делать веб-приложения и интерфейсы настольных программ.</p></div>
+<div id="weblessons"></div>
+
+<section id="apps" class="card"><div class="tag">МОДУЛЬ 04 · УРОКИ 29–38</div><h2>Настоящие приложения</h2><p>Теперь соединяем логику и интерфейс. Важно понимать разницу: веб-приложение открывается в браузере, настольное приложение устанавливается или запускается на компьютере, мобильное работает на телефоне.</p>
+</div></section>
+<div id="appleasons"></div>
+
+<section id="pro" class="card"><div class="tag">МОДУЛЬ 05 · УРОКИ 39–45</div><h2>Инструменты разработчика</h2><p>Этот модуль знакомит с рабочим процессом настоящей разработки: сохранением версий, данными, API, тестированием и поиском ошибок.</p></div>
+<div id="prolessons"></div>
+
+<section id="setup" class="card">
+<h2>Как начать практиковаться</h2>
+<h3>Если у тебя есть компьютер с Windows</h3>
+<ol>
+<li>Установи Python с официального сайта <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org</a>. Во время установки на Windows отметь <code>Add Python to PATH</code>.</li>
+<li>Установи редактор <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Visual Studio Code</a>.</li>
+<li>В VS Code создай папку <code>learning-code</code> и файл <code>lesson1.py</code>.</li>
+<li>Напиши <code>print("Привет, мир!")</code>, сохрани файл и запусти его через кнопку запуска Python или терминал командой <code>python lesson1.py</code>.</li>
+<li>Для JavaScript сначала можно использовать консоль браузера: открой инструменты разработчика и вкладку Console. Позже установим Node.js с <a href="https://nodejs.org/" target="_blank" rel="noopener">nodejs.org</a>.</li>
+</ol>
+<h3>Если сейчас только телефон</h3>
+<p>Читай курс и пробуй небольшие примеры в браузерных песочницах:</p>
+<ul><li><a href="https://www.programiz.com/python-programming/online-compiler/" target="_blank" rel="noopener">Programiz Python Online Compiler</a> — запуск Python.</li>
+<li><a href="https://www.programiz.com/javascript/online-compiler/" target="_blank" rel="noopener">Programiz JavaScript Online Compiler</a> — запуск JavaScript.</li>
+<li><a href="https://codepen.io/pen/" target="_blank" rel="noopener">CodePen</a> — эксперименты с HTML, CSS и JavaScript.</li></ul>
+<div class="tip">На телефоне удобно изучать основы, но собирать полноценные Windows-приложения и EXE лучше на компьютере. Сам учебник адаптирован под экран телефона.</div>
+</section>
+
+<section id="glossary" class="card"><h2>Мини-словарь программиста</h2>
+<details><summary>Переменная</summary><p>Именованное место, где программа хранит значение. Например, <code>age = 20</code>.</p></details>
+<details><summary>Функция</summary><p>Повторно используемый блок кода, который выполняет задачу. Например, функция приветствия.</p></details>
+<details><summary>Условие</summary><p>Проверка, от которой зависит дальнейшее действие программы: если условие верно, сделай одно, иначе другое.</p></details>
+<details><summary>Цикл</summary><p>Повторение команды или блока команд несколько раз.</p></details>
+<details><summary>Библиотека</summary><p>Готовый набор кода, который можно подключить, чтобы не писать всё самостоятельно.</p></details>
+<details><summary>Фреймворк</summary><p>Набор инструментов и правил, который задаёт основу приложения.</p></details>
+<details><summary>Интерфейс (UI)</summary><p>То, что видит пользователь: окна, кнопки, меню, поля и экраны.</p></details>
+<details><summary>Бэкенд</summary><p>Внутренняя часть приложения: обработка данных, правила, сервер и доступ к базе данных.</p></details>
+<details><summary>Баг</summary><p>Ошибка или нежелательное поведение программы.</p></details>
+<details><summary>Компиляция и сборка</summary><p>Процесс подготовки проекта к запуску или распространению. Конкретный способ зависит от технологии.</p></details>
+</section>
+<section class="card quiz"><h2>Контрольная точка №1</h2><p>Проверь, уловил ли ты самые первые понятия.</p>
+<p><strong>1. Для чего нужна переменная?</strong></p>
+<label><input type="radio" name="q1" value="a"> Чтобы хранить значение под именем</label>
+<label><input type="radio" name="q1" value="b"> Чтобы выключать компьютер</label>
+<label><input type="radio" name="q1" value="c"> Только чтобы менять цвет текста</label>
+<p><strong>2. Что делает функция <code>print()</code> в Python?</strong></p>
+<label><input type="radio" name="q2" value="a"> Удаляет файл</label>
+<label><input type="radio" name="q2" value="b"> Выводит информацию</label>
+<label><input type="radio" name="q2" value="c"> Подключает интернет</label>
+<p><strong>3. Что отвечает за внешний вид HTML-страницы?</strong></p>
+<label><input type="radio" name="q3" value="a"> CSS</label>
+<label><input type="radio" name="q3" value="b"> Git</label>
+<label><input type="radio" name="q3" value="c"> Python обязательно</label>
+<button onclick="checkQuiz()">Проверить ответы</button><div id="quizResult" class="result"></div>
+</section>
+<footer><div class="wrap"><strong>CODE: FROM ZERO</strong><p>Учебная программа для самостоятельного старта. Учись последовательно, экспериментируй и не бойся ошибок: отладка — обычная часть программирования.</p><a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Вернуться наверх ↑</a></div></footer>
+</main>
+<script>
+const modules = [
+{target:'lessons', items:[
+['1. Первая программа','Программа выполняет инструкции сверху вниз. Команда print показывает результат.','print("Привет, мир!")\nprint("Я учусь программировать")','Привет, мир!\nЯ учусь программировать','Замени текст на своё имя. Добавь третью строку, которая выводит цель обучения.','Не забывай кавычки вокруг текста.'],
+['2. Переменные','Переменная хранит данные под понятным именем. Знак = присваивает значение.','name = "Лёша"\nage = 20\nprint(name)\nprint(age)','Лёша\n20','Создай переменные city и hobby. Запиши туда город и увлечение, затем выведи их.','Имя переменной обычно пишут латиницей, без пробелов.'],
+['3. Типы данных','Частые типы: строка str, целое число int, дробное число float и логическое значение bool.','name = "Mira"   # строка\nage = 21        # целое число\nheight = 1.75   # дробное число\nis_student = True\nprint(type(age))','<class \\'int\\'>','Создай число, текст и True/False. Выведи type() для каждого.','Текст заключают в кавычки, числа обычно нет.'],
+['4. Математика','Python умеет складывать +, вычитать -, умножать *, делить / и получать остаток %.','a = 17\nb = 5\nprint(a + b)\nprint(a / b)\nprint(a % b)','22\n3.4\n2','Посчитай стоимость 3 товаров по 149 рублей и выведи итог.','Сначала умножь цену на количество.'],
+['5. Ввод пользователя','input() получает текст, который ввёл пользователь. Для числа используй int() или float().','name = input("Как тебя зовут? ")\nprint("Привет, " + name + "!")','Пользователь вводит имя, программа здоровается.','Спроси любимый язык программирования и выведи ответ.','input() возвращает строку, даже если пользователь ввёл цифры.'],
+['6. Условия','if проверяет условие, elif проверяет следующий вариант, else срабатывает иначе. Отступы важны.','age = 18\nif age >= 18:\n    print("Доступ разрешён")\nelse:\n    print("Пока рано")','Доступ разрешён','Попроси ввести возраст. Если возраст 18 или больше, выведи «Можно», иначе «Нельзя».','Сравнение на равенство пишется ==, а не =.'],
+['7. Логические операции','and означает «и», or — «или», not — «не». С их помощью объединяют условия.','age = 22\nhas_ticket = True\nif age >= 18 and has_ticket:\n    print("Вход разрешён")','Вход разрешён','Добавь проверку, что у пользователя есть билет и ему не меньше 18 лет.','Обе части выражения с and должны быть истинными.'],
+['8. Циклы','Цикл for повторяет действие для элементов последовательности. range(5) даёт числа от 0 до 4.','for number in range(1, 6):\n    print(number)','1\n2\n3\n4\n5','Выведи числа от 1 до 10. Затем попробуй вывести только чётные числа.','Для шага 2 используй range(2, 11, 2).'],
+['9. Списки','Список хранит несколько значений. Индексация начинается с нуля. append добавляет элемент.','fruits = ["яблоко", "груша"]\nfruits.append("банан")\nprint(fruits[0])\nprint(len(fruits))','яблоко\n3','Создай список из трёх любимых игр. Добавь четвёртую и выведи все элементы циклом.','len() возвращает количество элементов.'],
+['10. Функции','Функция объединяет инструкции. Параметры передают ей данные, return возвращает результат.','def greet(name):\n    return "Привет, " + name\n\nmessage = greet("Мир")\nprint(message)','Привет, Мир','Напиши функцию, которая принимает два числа и возвращает их сумму. Вызови её.','Объявление функции начинается с def.']
+]},
+{target:'jslessons', items:[
+['11. Что такое JavaScript','JavaScript добавляет поведение веб-страницам и может работать вне браузера через Node.js.','console.log("Привет из JavaScript!");','Привет из JavaScript!','Измени текст и выведи ещё одну строку через console.log().','В JavaScript текст тоже заключают в кавычки.'],
+['12. Переменные let и const','const используют для значения, которое не переназначают. let — когда значение будет меняться.','const name = "Alex";\nlet score = 0;\nscore = score + 10;\nconsole.log(name, score);','Alex 10','Создай const для своего имени и let для очков. Увеличь очки на 5.','Не используй var в новых учебных примерах без причины.'],
+['13. Типы и преобразование','JavaScript имеет строки, числа, boolean, массивы и объекты. Number() преобразует строку в число.','const input = "42";\nconst number = Number(input);\nconsole.log(number + 8);','50','Преобразуй строку "100" в число и прибавь 25.','"100" + 25 без преобразования может склеить значения в строку.'],
+['14. Условия','Условия if/else позволяют выбрать путь выполнения.','const temperature = 12;\nif (temperature > 20) {\n console.log("Тепло");\n} else {\n console.log("Прохладно");\n}','Прохладно','Проверь переменную balance: если она больше нуля, выведи «Есть деньги».','Фигурные скобки ограничивают блок команд.'],
+['15. Циклы','Циклы for и while повторяют действия. Следи, чтобы while когда-нибудь завершался.','for (let i = 1; i <= 3; i++) {\n console.log("Попытка", i);\n}','Попытка 1\nПопытка 2\nПопытка 3','Выведи числа от 1 до 7 циклом for.','i++ увеличивает i на единицу.'],
+['16. Функции','Функции можно объявлять через function или стрелочную запись.','function add(a, b) {\n return a + b;\n}\nconsole.log(add(4, 6));','10','Создай функцию multiply(a, b), возвращающую произведение.','return возвращает значение вызывающему коду.'],
+['17. Массивы','Массив хранит упорядоченный список. push добавляет элемент, length показывает длину.','const apps = ["Заметки", "Музыка"];\napps.push("Календарь");\nconsole.log(apps.length);\nconsole.log(apps[0]);','3\nЗаметки','Создай массив из трёх приложений и добавь четвёртое.','Первый элемент находится по индексу 0.'],
+['18. Объекты','Объект объединяет связанные свойства в одной структуре.','const user = {\n name: "Alex",\n level: 1\n};\nconsole.log(user.name);','Alex','Создай объект track с полями title, artist и duration.','Значение свойства читают через точку: object.property.'],
+['19. События кнопок','В браузере JavaScript может реагировать на действия пользователя, например на клик.','const button = document.querySelector("button");\nbutton.addEventListener("click", () => {\n console.log("Кнопка нажата!");\n});','При нажатии появляется сообщение в консоли.','Создай HTML-кнопку, найди её через querySelector и выведи сообщение при клике.','Этот пример запускается на веб-странице, где действительно есть button.'],
+['20. Работа с DOM','DOM — представление HTML-страницы, с которым JavaScript может работать.','const title = document.querySelector("h1");\ntitle.textContent = "Моё приложение";','Заголовок страницы меняется.','Добавь кнопку, которая меняет текст заголовка при нажатии.','textContent меняет текст элемента, не HTML-разметку.']
+]},
+{target:'weblessons',items:[
+['21. HTML-документ','HTML описывает структуру страницы с помощью тегов.','<!doctype html>\n<html lang="ru">\n<head><meta charset="UTF-8"><title>Моя страница</title></head>\n<body><h1>Привет!</h1><p>Это мой сайт.</p></body>\n</html>','Страница с заголовком и абзацем.','Создай страницу с заголовком, абзацем и ссылкой.','Большинство тегов имеют открывающую и закрывающую части.'],
+['22. Заголовки, текст и ссылки','h1 — главный заголовок, p — абзац, a — ссылка, img — изображение.','<h1>Мой проект</h1>\n<p>Я учусь создавать приложения.</p>\n<a href="https://example.com">Пример ссылки</a>','Заголовок, текст и кликабельная ссылка.','Добавь два заголовка разных уровней и ссылку на полезный ресурс.','У ссылки адрес указывают в href.'],
+['23. Кнопки и поля','button создаёт кнопку, input — поле ввода. label помогает подписать поле.','<label for="name">Имя</label>\n<input id="name" placeholder="Введи имя">\n<button>Сохранить</button>','Поле ввода и кнопка.','Сделай форму с полем имени и кнопкой отправки.','id должен совпадать со значением for у label.'],
+['24. CSS: цвета и шрифты','CSS задаёт стиль элементов: цвет, фон, размер шрифта, отступы и границы.','h1 { color: orange; }\nbody { background: #10131a; color: white; font-family: Arial; }\nbutton { padding: 10px 16px; border-radius: 10px; }','Заголовок оранжевый, фон тёмный, кнопка с отступами.','Сделай тёмную страницу с оранжевым заголовком и округлой кнопкой.','CSS можно подключить через тег style или отдельный файл .css.'],
+['25. Блочная модель','У элемента есть content, padding, border и margin. Они влияют на размеры и расстояния.','.card {\n  padding: 16px;\n  border: 1px solid #444;\n  margin: 12px;\n  border-radius: 12px;\n}','Карточка с внутренними и внешними отступами.','Создай карточку с заголовком, текстом и рамкой.','box-sizing: border-box упрощает расчёт размеров.'],
+['26. Flexbox','Flexbox удобно располагает элементы в строку или колонку и распределяет свободное место.',' .row {\n  display: flex;\n  gap: 12px;\n  align-items: center;\n  justify-content: space-between;\n}','Элементы стоят в одной строке с промежутками.','Сделай верхнюю панель приложения с названием слева и кнопкой справа.','На узком экране можно менять направление на column.'],
+['27. Адаптация под телефон','Медиазапросы позволяют менять стили в зависимости от ширины экрана.','@media (max-width: 600px) {\n  .row { flex-direction: column; }\n  h1 { font-size: 28px; }\n}','На телефоне элементы перестраиваются в колонку.','Сделай карточки в две колонки на широком экране и в одну на узком.','Проверяй страницу на реальном телефоне и в режиме responsive.'],
+['28. Мини-проект: карточка приложения','Собери знания: HTML создаёт карточку, CSS оформляет её, JS реагирует на нажатие.','<div class="card">\n  <h2>Мой трекер</h2>\n  <p id="status">Пока пусто</p>\n  <button onclick="document.querySelector(\\'#status\\').textContent=\\'Работает!\\'">Проверить</button>\n</div>','После нажатия текст меняется на «Работает!».','Собери собственную карточку приложения: название, описание, кнопку и реакцию на клик.','Позже вынеси JavaScript из HTML в отдельный файл.']
+]},
+{target:'appleasons',items:[
+['29. Что такое нативное приложение','Нативное приложение создаётся под конкретную платформу и использует её возможности. На Windows это могут быть C#/.NET, WinUI или другие технологии.','Идея: интерфейс Windows + логика + доступ к файлам и системным функциям.','Это не один язык, а способ разработки под платформу.','Найди три приложения на своём компьютере и определи, какие функции ОС им нужны.','Не всякая программа в окне является нативной.'],
+['30. Python GUI','Для простых оконных программ на Python можно изучить Tkinter.','import tkinter as tk\n\nwindow = tk.Tk()\nwindow.title("Моё приложение")\nlabel = tk.Label(window, text="Привет!")\nlabel.pack(padx=20, pady=20)\nwindow.mainloop()','Откроется простое окно с надписью.','Добавь кнопку в окно. При нажатии она должна менять текст label.','Tkinter обычно входит в стандартную поставку Python.'],
+['31. Electron','Electron упаковывает веб-интерфейс вместе с Chromium и Node.js. Подходит для кроссплатформенных настольных программ, но приложения могут быть довольно тяжёлыми.','Структура проекта обычно включает package.json, main.js и файлы интерфейса.','Можно делать Windows, macOS и Linux приложения на веб-технологиях.','Посмотри документацию Electron и выпиши, за что отвечает main process и renderer.','Electron не превращает сайт в полностью нативный интерфейс ОС.'],
+['32. Tauri','Tauri использует системный WebView для интерфейса и нативную часть приложения. Часто даёт более компактные сборки, но требует настройки инструментов платформы.','Frontend: HTML + CSS + JavaScript\nBackend: Rust-команды и системные API','Веб-интерфейс может быть оболочкой настольной программы.','Сравни Electron и Tauri по размеру, требованиям и доступу к функциям ОС.','Для Tauri пригодится постепенно изучить основы Rust.'],
+['33. Мобильные приложения','Для Android/iOS существуют разные пути: Kotlin/Swift, Flutter, React Native и другие. Выбор зависит от платформ и задач.','Android native: Kotlin\n iOS native: Swift\n Cross-platform: Flutter или React Native','Один проект может поддерживать несколько платформ, но не всегда одинаково.','Выбери простое мобильное приложение и набросай три его экрана на бумаге.','Для публикации iOS-приложения обычно нужен доступ к инструментам Apple.'],
+['34. Файлы и папки','Приложения часто читают, создают и сохраняют файлы. С файловыми операциями нужно быть аккуратным.','from pathlib import Path\n\nfile = Path("notes.txt")\nfile.write_text("Моя первая заметка", encoding="utf-8")\ntext = file.read_text(encoding="utf-8")\nprint(text)','Моя первая заметка','Сохрани введённую пользователем заметку в файл и прочитай её обратно.','Не перезаписывай важные файлы без проверки пути.'],
+['35. Настройки приложения','Настройки можно хранить в JSON: это текстовый формат для структурированных данных.','import json\nsettings = {"theme": "dark", "volume": 80}\nwith open("settings.json", "w", encoding="utf-8") as f:\n    json.dump(settings, f, ensure_ascii=False, indent=2)','Создаётся файл settings.json с настройками.','Добавь настройку языка и прочитай её из JSON-файла.','JSON хранит объекты, массивы, строки, числа, true/false и null.'],
+['36. Базы данных','База данных хранит информацию структурированно. SQLite удобна для небольших локальных приложений.','import sqlite3\nconn = sqlite3.connect("app.db")\nconn.execute("CREATE TABLE IF NOT EXISTS notes (text TEXT)")\nconn.execute("INSERT INTO notes VALUES (?)", ("Первая запись",))\nconn.commit()\nconn.close()','Создаётся локальная база и таблица заметок.','Добавь несколько записей и выведи их SELECT-запросом.','Используй параметры запроса ?, не склеивай SQL из пользовательского текста.'],
+['37. API и интернет','API — согласованный способ обмена данными между программами. HTTP-запрос может получить JSON с сервера.','fetch("https://jsonplaceholder.typicode.com/todos/1")\n  .then(response => response.json())\n  .then(data => console.log(data));','В консоли появится объект с данными тестового API.','Получи данные тестового API и выведи только поле title.','Сетевые запросы могут завершиться ошибкой, поэтому позже изучим обработку ошибок.'],
+['38. Сборка приложения','Сборка готовит проект к запуску или распространению. Python-программы можно упаковывать, например, PyInstaller; Electron и Tauri имеют свои сборщики.','Пример для Python в терминале:\npyinstaller --onefile main.py','После сборки появляется исполняемый файл в папке dist.','Найди требования PyInstaller и собери простую программу после установки на ПК.','EXE не гарантирует работу на каждом компьютере: учитывай файлы, зависимости и архитектуру.']
+]},
+{target:'prolessons',items:[
+['39. Терминал','Терминал позволяет запускать команды и инструменты разработки.','python --version\ncd путь_к_папке\npython main.py','Показывает версию Python и запускает файл из папки проекта.','Открой терминал, узнай версию Python и перейди в папку проекта.','Команды отличаются в Windows, macOS и Linux.'],
+['40. Ошибки и отладка','Ошибка — не катастрофа, а подсказка. Читай сообщение целиком: тип ошибки, файл и строку.','name = "Alex"\nprint(nam)  # NameError: переменная nam не определена','Исправь nam на name, чтобы программа запустилась.','Нарочно допусти опечатку, прочитай ошибку и исправь её.','Не меняй сразу десять мест: проверяй по одному изменению.'],
+['41. Git','Git сохраняет историю изменений проекта. Коммит — зафиксированное состояние файлов.','git init\ngit add .\ngit commit -m "Первый коммит"','Создаётся локальная история проекта.','Создай репозиторий и сделай первый коммит.','Перед коммитом проверяй git status.'],
+['42. GitHub','GitHub хранит Git-репозитории онлайн и помогает делиться кодом, вести задачи и работать вместе.','git remote add origin URL_репозитория\ngit push -u origin main','Локальный проект отправляется в удалённый репозиторий.','Создай учебный репозиторий и добавь README с описанием проекта.','Не загружай пароли, токены и приватные ключи.'],
+['43. Структура проекта','Разделяй код по смыслу: интерфейс, логика, данные и тесты. Понятные имена экономят время.','project/\n  src/\n  tests/\n  assets/\n  README.md','Проект легче читать и поддерживать.','Разложи свой мини-проект по папкам и опиши запуск в README.','Не создавай десятки папок без необходимости.'],
+['44. Тестирование','Тесты проверяют, что функции работают как ожидается, в том числе на крайних значениях.','def add(a, b):\n    return a + b\n\nassert add(2, 3) == 5\nassert add(-1, 1) == 0','Если условие неверно, assert сообщит об ошибке.','Напиши тесты для функции умножения: положительные, ноль и отрицательные числа.','Проверяй не только обычный сценарий, но и необычные входные данные.'],
+['45. Первый самостоятельный проект','Теперь спланируй приложение: какую проблему оно решает, кто им пользуется, какие экраны и данные нужны. Начни с минимальной рабочей версии.','Пример: список задач\n1. Добавить задачу\n2. Показать список\n3. Отметить выполненной\n4. Сохранить список','Это уже план реального приложения, который можно постепенно реализовать.','Составь план своего приложения: название, цель, 3 функции, 2 экрана и способ хранения данных.','Сначала сделай маленькую рабочую версию. Новые функции добавляй после проверки основы.']
+]}
+];
+let allIndex=0;
+function escapeHtml(s){return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')}
+for(const mod of modules){
+ const host=document.getElementById(mod.target);
+ mod.items.forEach((item)=>{
+  allIndex++;
+  const id='lesson-'+allIndex;
+  const article=document.createElement('article');
+  article.className='card lesson'; article.id=id;
+  article.innerHTML=`<div class="lesson-head"><div><div class="tag">УРОК ${allIndex}</div><h3>${item[0]}</h3></div><span class="small">${allIndex}/45</span></div>
+  <p>${item[1]}</p>
+  <details><summary>Посмотреть пример</summary><pre>${escapeHtml(item[2])}</pre>${item[3]?`<div class="output">${escapeHtml(item[3])}</div>`:''}</details>
+  <div class="task"><strong>Твоё задание</strong><p>${item[4]}</p></div>
+  <div class="tip">${item[5]}</div>
+  <label class="lesson-check"><input type="checkbox" data-lesson="${allIndex}"> Урок пройден, задание выполнено</label>`;
+  host.appendChild(article);
+ });
+}
+const KEY='codeFromZeroProgressV1';
+function getDone(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return []}}
+function saveDone(a){localStorage.setItem(KEY,JSON.stringify(a));updateProgress()}
+function updateProgress(){const done=getDone();document.querySelectorAll('[data-lesson]').forEach(c=>c.checked=done.includes(Number(c.dataset.lesson)));document.getElementById('progressBar').style.width=(done.length/45*100)+'%';document.getElementById('progressText').textContent=`Выполнено ${done.length} из 45 уроков`;}
+document.addEventListener('change',e=>{if(e.target.matches('[data-lesson]')){let d=getDone(),n=Number(e.target.dataset.lesson);d=e.target.checked?[...new Set([...d,n])]:d.filter(x=>x!==n);saveDone(d)}});
+function resetProgress(){if(confirm('Сбросить все отметки о прохождении?')){localStorage.removeItem(KEY);updateProgress()}}
+function checkQuiz(){let answers={q1:'a',q2:'b',q3:'a'},score=0;for(let q in answers){let v=document.querySelector('input[name="'+q+'"]:checked');if(v&&v.value===answers[q])score++}document.getElementById('quizResult').textContent=`Твой результат: ${score} из 3. `+(score===3?'Отлично! Основы уловлены.':'Посмотри ещё раз стартовый раздел и попробуй снова.');}
+updateProgress();
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(err => {
+      console.warn('Service worker не зарегистрирован:', err);
+    });
+  });
+}
+</script>
+</body></html>
